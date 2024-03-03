@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 set -ex
-START_COMMAND="/usr/bin/obsidian"
+START_COMMAND="obsidian"
 PGREP="obsidian"
-export MAXIMIZE="true"
-export MAXIMIZE_NAME="obsidian"
-MAXIMIZE_SCRIPT=$STARTUPDIR/maximize_window.sh
+MAXIMIZE="true"
 DEFAULT_ARGS="--no-sandbox"
+
+if [[ $MAXIMIZE == 'true' ]] ; then
+    DEFAULT_ARGS+=" --start-maximized"
+fi
 ARGS=${APP_ARGS:-$DEFAULT_ARGS}
 
 options=$(getopt -o gau: -l go,assign,url: -n "$0" -- "$@") || exit
@@ -40,8 +42,9 @@ kasm_exec() {
     if [ -n "$URL" ] ; then
         /usr/bin/filter_ready
         /usr/bin/desktop_ready
-        bash ${MAXIMIZE_SCRIPT} &
+        set +e
         $START_COMMAND $ARGS $OPT_URL
+        set -e
     else
         echo "No URL specified for exec command. Doing nothing."
     fi
@@ -64,10 +67,7 @@ kasm_startup() {
             then
                 /usr/bin/filter_ready
                 /usr/bin/desktop_ready
-                set +e
-                bash ${MAXIMIZE_SCRIPT} &
-                $START_COMMAND $ARGS $URL &
-                set -e
+                $START_COMMAND $ARGS $URL
             fi
             sleep 1
         done
