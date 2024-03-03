@@ -3,7 +3,6 @@ set -xe
 
 # Install obsidian
 OBSIDIAN_VERSION=1.5.8
-#wget -q -O obsidian.deb https://github.com/obsidianmd/obsidian-releases/releases/download/v${OBSIDIAN_VERSION}/obsidian_${OBSIDIAN_VERSION}_amd64.deb
 wget -q -O obsidian.deb https://github.com/obsidianmd/obsidian-releases/releases/download/v${OBSIDIAN_VERSION}/obsidian_${OBSIDIAN_VERSION}_amd64.deb
 apt-get update
 apt-get install -y ./obsidian.deb
