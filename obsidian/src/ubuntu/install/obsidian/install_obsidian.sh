@@ -8,6 +8,9 @@ apt-get update
 apt-get install -y ./obsidian.deb
 rm obsidian.deb
 
+# Desktop Icon
+cp /usr/share/applications/obsidian.desktop $HOME/Desktop/
+chmod +x $HOME/Desktop/obsidian.desktop
 
 # Cleanup for app layer
 chown -R 1000:0 $HOME

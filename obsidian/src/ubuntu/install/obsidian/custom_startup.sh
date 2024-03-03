@@ -3,7 +3,7 @@ set -ex
 START_COMMAND="obsidian"
 PGREP="obsidian"
 MAXIMIZE="true"
-DEFAULT_ARGS="--no-sandbox --no-xshm --disable-dev-shm-usage --disable-gpu --disable-software-rasterizer"
+DEFAULT_ARGS="--no-sandbox"
 
 if [[ $MAXIMIZE == 'true' ]] ; then
     DEFAULT_ARGS+=" --start-maximized"
