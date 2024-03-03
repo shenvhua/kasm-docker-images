@@ -9,11 +9,6 @@ apt-get install -y ./obsidian.deb
 rm obsidian.deb
 
 
-
-
-
-
-
 # Cleanup for app layer
 chown -R 1000:0 $HOME
 find /usr/share/ -name "icon-theme.cache" -exec rm -f {} \;
