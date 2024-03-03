@@ -40,9 +40,8 @@ kasm_exec() {
     if [ -n "$URL" ] ; then
         /usr/bin/filter_ready
         /usr/bin/desktop_ready
-        set +e
+        bash ${MAXIMIZE_SCRIPT} &
         $START_COMMAND $ARGS $OPT_URL
-        set -e
     else
         echo "No URL specified for exec command. Doing nothing."
     fi
@@ -65,7 +64,10 @@ kasm_startup() {
             then
                 /usr/bin/filter_ready
                 /usr/bin/desktop_ready
-                $START_COMMAND $ARGS $URL
+                set +e
+                bash ${MAXIMIZE_SCRIPT} &
+                $START_COMMAND $ARGS $URL &
+                set -e
             fi
             sleep 1
         done
